@@ -1,0 +1,60 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black-primary-300);
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  position: absolute;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  color: var(--black-primary-500);
+}
+
+.iconImg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid var(--black-primary-700);
+  border-radius: 8px;
+  background-color: var(--black-primary-900);
+  color: var(--black-primary-300);
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+
+  &::placeholder {
+    color: var(--black-primary-500);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--brand-primary-500);
+    background-color: var(--white-primary);
+  }
+
+  &WithIcon {
+    padding-left: 44px;
+  }
+}

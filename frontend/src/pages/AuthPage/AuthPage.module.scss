@@ -1,0 +1,34 @@
+.root {
+  background-color: #f1f7fe;
+  padding: 24px 32px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  height: calc(100vh - 65px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  background-color: #fff;
+  padding: 24px 32px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.formTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.formContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

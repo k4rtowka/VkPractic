@@ -1,0 +1,42 @@
+.root {
+  height: 65px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32px;
+}
+
+.leftWrapper {
+  height: 100%;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo {
+  object-fit: contain;
+  filter: invert(1) hue-rotate(90deg);
+}
+
+.logoWrapper {
+  width: 45px;
+  height: 45px;
+  background: var(--brand-primary-gradient);
+  border-radius: 25%;
+  padding: 8px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--brand-primary-700);
+}
+
+.rightWrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}

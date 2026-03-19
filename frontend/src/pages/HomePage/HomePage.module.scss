@@ -1,0 +1,130 @@
+.root {
+  background-color: var(--brand-primary-200);
+  padding: 24px 82px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.firstSection {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .logoWrapper {
+    width: 82px;
+    height: 82px;
+    background: var(--brand-primary-gradient);
+    border-radius: 50%;
+    padding: 18px;
+  }
+
+  .logo {
+    object-fit: contain;
+    filter: invert(1) hue-rotate(90deg);
+  }
+
+  .title {
+    font-size: 48px;
+    color: var(--brand-primary-700);
+
+    @media (max-width: 480px) {
+      font-size: 18px;
+    }
+  }
+
+  .description {
+    font-size: 18px;
+    color: var(--black-primary-400);
+    font-weight: 600;
+    word-break: break-word;
+    text-align: center;
+    width: 600px;
+
+    @media (max-width: 480px) {
+      width: 300px;
+      font-size: 12px;
+    }
+  }
+
+  .buttons {
+    margin-top: 12px;
+    display: flex;
+    gap: 16px;
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+}
+
+.secondSection {
+  margin-top: 48px;
+  display: flex;
+  justify-content: space-between;
+
+  .card {
+    width: 30%;
+    height: 200px;
+    background-color: var(--white-primary);
+    border-radius: 15px;
+    box-shadow: 0 0 1px 0 var(--brand-primary-300);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .cardIcon {
+    color: var(--brand-primary-400);
+    display: flex;
+    align-items: center;
+  }
+
+  .iconImg {
+    display: block;
+    flex-shrink: 0;
+    background-color: var(--brand-primary-250);
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .cardTitle {
+    font-size: 22px;
+    color: var(--brand-primary-700);
+    font-weight: 600;
+  }
+
+  .cardDescription {
+    font-size: 16px;
+    color: var(--black-primary-200);
+    font-weight: 500;
+  }
+}
+
+.thirdSection {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin: 48px 0;
+  padding: 24px;
+  border-radius: 15px;
+  background-color: var(--white-primary);
+  box-shadow: 0 0 1px 0 var(--brand-primary-300);
+
+  .title {
+    font-size: 32px;
+    color: var(--brand-primary-700);
+    font-weight: 600;
+  }
+
+  .list {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
