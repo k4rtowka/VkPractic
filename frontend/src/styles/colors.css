@@ -21,4 +21,9 @@
   --brand-primary-gradient: linear-gradient(to bottom right, #165dfc, #4091ff);
 
   --red-primary-500: #e53935;
+
+  --option-1: #e53935;
+  --option-2: #1e88e5;
+  --option-3: #f9a825;
+  --option-4: #43a047;
 }

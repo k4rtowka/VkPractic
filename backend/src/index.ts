@@ -143,7 +143,8 @@ io.on('connection', (socket) => {
       }
 
       const userId = socket.data.userId as number;
-      ack?.(handleAnswer(sessionId, userId, optionIds));
+      const result = handleAnswer(sessionId, userId, optionIds);
+      ack?.(result);
     },
   );
 });

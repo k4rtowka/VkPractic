@@ -45,7 +45,7 @@ export const getValidationAttrs = (type: ValidationType) => {
     case 'email':
       return {
         required: true,
-        pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$',
+        pattern: '^[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}$',
       };
     case 'phone':
       return {

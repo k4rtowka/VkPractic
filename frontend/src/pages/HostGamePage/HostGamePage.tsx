@@ -62,13 +62,10 @@ export const HostGamePage = () => {
       },
     );
 
-    socket.on(
-      'game:answer_count',
-      (data: { count: number; total: number }) => {
-        setAnsweredCount(data.count);
-        setTotalParticipants(data.total);
-      },
-    );
+    socket.on('game:answer_count', (data: { count: number; total: number }) => {
+      setAnsweredCount(data.count);
+      setTotalParticipants(data.total);
+    });
 
     return () => {
       socket.removeAllListeners();
@@ -184,10 +181,7 @@ export const HostGamePage = () => {
             <p className={s.questionBody}>{question.body}</p>
             <div className={s.optionsGrid}>
               {question.options.map((opt, i) => (
-                <div
-                  key={opt.id}
-                  className={cn(s.option, s[`option${i % 4}`])}
-                >
+                <div key={opt.id} className={cn(s.option, s[`option${i % 4}`])}>
                   {opt.body}
                 </div>
               ))}

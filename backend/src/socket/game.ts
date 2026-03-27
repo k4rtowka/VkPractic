@@ -43,10 +43,7 @@ function calculateScore(timeTakenMs: number, totalTimeMs: number): number {
   return Math.round(MAX_SCORE * (1 - ratio * SPEED_WEIGHT));
 }
 
-function isAnswerCorrect(
-  question: GameQuestion,
-  optionIds: number[],
-): boolean {
+function isAnswerCorrect(question: GameQuestion, optionIds: number[]): boolean {
   const correctIds = new Set(
     question.options.filter((o) => o.isCorrect).map((o) => o.id),
   );

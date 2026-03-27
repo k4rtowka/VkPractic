@@ -77,7 +77,7 @@ export const PlayerGamePage = () => {
   }, [sessionId, token]);
 
   useEffect(() => {
-    if (phase !== 'question') {
+    if (phase !== 'question' && phase !== 'answered') {
       if (timerRef.current) clearInterval(timerRef.current);
       return;
     }
