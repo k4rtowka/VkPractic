@@ -1,0 +1,157 @@
+.root {
+  min-height: calc(100vh - 65px);
+  background-color: var(--black-primary-900);
+  padding: 32px 48px 48px;
+}
+
+.wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.centeredBlock {
+  text-align: center;
+  padding: 80px 0;
+}
+
+.pageTitle {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--brand-primary-700);
+  margin: 0 0 8px;
+}
+
+.pageHint {
+  font-size: 16px;
+  color: var(--black-primary-400);
+  margin: 0;
+  text-align: center;
+}
+
+.pageSubtitle {
+  text-align: center;
+  font-size: 15px;
+  color: var(--black-primary-400);
+  margin: 0 0 28px;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.questionLabel {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--black-primary-400);
+}
+
+.questionCard {
+  background: var(--white-primary);
+  border-radius: 14px;
+  padding: 28px 24px;
+  border: 1px solid rgba(26, 43, 75, 0.06);
+  box-shadow: 0 2px 8px rgba(26, 43, 75, 0.07);
+  margin-bottom: 20px;
+}
+
+.questionBody {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--black-primary-300);
+  margin: 0 0 24px;
+  line-height: 1.45;
+}
+
+.optionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.option {
+  padding: 16px;
+  border-radius: 10px;
+  color: var(--white-primary);
+  font-size: 16px;
+  font-weight: 600;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+.option0 {
+  background: var(--option-1);
+}
+.option1 {
+  background: var(--option-2);
+}
+.option2 {
+  background: var(--option-3);
+  color: var(--black-primary-300);
+}
+.option3 {
+  background: var(--option-4);
+}
+
+.optionCorrect {
+  outline: 3px solid #2e7d32;
+  outline-offset: -3px;
+}
+
+.optionWrong {
+  opacity: 0.45;
+}
+
+.answeredInfo {
+  text-align: center;
+  padding: 12px 0;
+  font-size: 15px;
+  color: var(--black-primary-400);
+}
+
+.resultTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--brand-primary-700);
+  margin: 0 0 16px;
+}
+
+.resultTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.resultTable th,
+.resultTable td {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 15px;
+}
+
+.resultTable th {
+  color: var(--black-primary-400);
+  font-weight: 600;
+  border-bottom: 1px solid rgba(26, 43, 75, 0.1);
+}
+
+.resultTable td {
+  color: var(--black-primary-300);
+}
+
+.deltaPositive {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.deltaZero {
+  color: var(--black-primary-500);
+}

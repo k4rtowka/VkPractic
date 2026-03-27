@@ -1,0 +1,167 @@
+.root {
+  min-height: calc(100vh - 65px);
+  background-color: var(--black-primary-900);
+  padding: 32px 48px 48px;
+}
+
+.wrapper {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.centeredBlock {
+  text-align: center;
+  padding: 48px 0;
+}
+
+.pageTitle {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--brand-primary-700);
+  margin: 0 0 8px;
+}
+
+.pageHint {
+  font-size: 16px;
+  color: var(--black-primary-400);
+  margin: 0;
+  text-align: center;
+}
+
+.pageSubtitle {
+  text-align: center;
+  font-size: 15px;
+  color: var(--black-primary-400);
+  margin: 0 0 28px;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.questionLabel {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--black-primary-400);
+}
+
+.questionBody {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--black-primary-300);
+  margin: 0 0 24px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.optionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.optionBtn {
+  padding: 20px 16px;
+  border-radius: 12px;
+  border: 3px solid transparent;
+  color: var(--white-primary);
+  font-size: 17px;
+  font-weight: 600;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    transform 0.15s,
+    opacity 0.15s;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.optionBtn[disabled] {
+  cursor: default;
+  opacity: 0.6;
+  transform: none;
+}
+
+.option0 {
+  background: var(--option-1);
+}
+.option1 {
+  background: var(--option-2);
+}
+.option2 {
+  background: var(--option-3);
+  color: var(--black-primary-300);
+}
+.option3 {
+  background: var(--option-4);
+}
+
+.optionSelected {
+  border-color: var(--white-primary);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+.optionCorrect {
+  border-color: #2e7d32;
+  box-shadow: 0 0 0 2px #2e7d32;
+}
+
+.optionWrong {
+  opacity: 0.4;
+}
+
+.resultCard {
+  text-align: center;
+  padding: 28px;
+  background: var(--white-primary);
+  border-radius: 14px;
+  border: 1px solid rgba(26, 43, 75, 0.06);
+}
+
+.resultCorrect {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2e7d32;
+  margin: 0 0 8px;
+}
+
+.resultIncorrect {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--red-primary-500);
+  margin: 0 0 8px;
+}
+
+.resultDelta {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--brand-primary-500);
+  margin: 0 0 6px;
+}
+
+.resultTotal {
+  font-size: 15px;
+  color: var(--black-primary-400);
+  margin: 0;
+}

@@ -1,6 +1,8 @@
 import s from './AuthForm.module.scss';
 import { Input } from '../Input/Input';
 import { Button } from '../Button/Button';
+import type { ValidationType } from '../../utils/validation';
+import { getValidationAttrs } from '../../utils/validation';
 
 export type AuthFormField = {
   name: string;
@@ -9,6 +11,7 @@ export type AuthFormField = {
   placeholder: string;
   icon?: string;
   id: string;
+  validationType: ValidationType;
 };
 
 export type AuthFormFooter = {
@@ -24,10 +27,11 @@ type AuthFormProps = {
   submitButtonText: string;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   footer?: AuthFormFooter;
+  errors?: Record<string, string>;
 };
 
 export const AuthForm = (props: AuthFormProps) => {
-  const { title, subtitle, fields, submitButtonText, onSubmit, footer } = props;
+  const { title, subtitle, fields, submitButtonText, onSubmit, footer, errors } = props;
 
   return (
     <div className={s.card}>
@@ -36,16 +40,19 @@ export const AuthForm = (props: AuthFormProps) => {
         {subtitle && <p className={s.subtitle}>{subtitle}</p>}
       </div>
 
-      <form className={s.form} onSubmit={onSubmit}>
+      <form className={s.form} onSubmit={onSubmit} noValidate>
         <div className={s.fields}>
           {fields.map((field) => (
             <Input
               key={field.name}
+              id={field.id}
               name={field.name}
               label={field.label}
               type={field.type}
               placeholder={field.placeholder}
               icon={field.icon}
+              error={errors?.[field.name]}
+              {...getValidationAttrs(field.validationType)}
             />
           ))}
         </div>

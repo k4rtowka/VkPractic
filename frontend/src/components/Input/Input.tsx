@@ -7,10 +7,11 @@ type InputProps = Omit<ComponentProps<'input'>, 'className'> & {
   label: string;
   icon?: string;
   className?: string;
+  error?: string;
 };
 
 export const Input = (props: InputProps) => {
-  const { label, icon, className, id, ...rest } = props;
+  const { label, icon, className, id, error, ...rest } = props;
 
   return (
     <div className={cn(s.root, className)}>
@@ -25,10 +26,15 @@ export const Input = (props: InputProps) => {
         )}
         <input
           id={id}
-          className={cn(s.input, icon && s.inputWithIcon)}
+          className={cn(
+            s.input,
+            icon && s.inputWithIcon,
+            error && s.inputError,
+          )}
           {...rest}
         />
       </div>
+      {error && <span className={s.error}>{error}</span>}
     </div>
   );
 };

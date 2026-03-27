@@ -9,4 +9,16 @@ export default defineConfig({
       generateScopedName: '[folder]__[local]--[hash:base64:5]',
     },
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+      },
+      '/socket.io': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        ws: true,
+      },
+    },
+  },
 });

@@ -1,0 +1,146 @@
+.root {
+  min-height: calc(100vh - 65px);
+  background-color: var(--black-primary-900);
+  padding: 32px 48px 48px;
+}
+
+.wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.title {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--brand-primary-700);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 22px;
+  background: var(--white-primary);
+  border-radius: 12px;
+  border: 1px solid rgba(26, 43, 75, 0.06);
+  box-shadow: 0 1px 3px rgba(26, 43, 75, 0.06);
+}
+
+.cardMain {
+  flex: 1;
+  min-width: 0;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.quizTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--brand-primary-700);
+}
+
+.description {
+  margin: 0 0 14px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--black-primary-400);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 20px;
+  font-size: 14px;
+  color: var(--black-primary-400);
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.metaIcon {
+  display: flex;
+  flex-shrink: 0;
+  color: var(--black-primary-500);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--brand-primary-200);
+  color: var(--brand-primary-700);
+}
+
+.badgeHost {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--green-primary-300);
+  color: #2e7d32;
+}
+
+.badgeParticipant {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--brand-primary-200);
+  color: #e65100;
+}
+
+.status {
+  text-align: center;
+  font-size: 15px;
+  color: var(--black-primary-400);
+  padding: 32px 0;
+}
+
+.errorText {
+  text-align: center;
+  font-size: 15px;
+  color: var(--red-primary-500);
+  padding: 32px 0;
+}

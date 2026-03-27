@@ -1,9 +1,9 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import type { ResultSetHeader, RowDataPacket } from 'mysql2';
-import { pool } from '../db';
 import { config } from '../config';
-import type { User, UserPublic } from '../types';
+import { pool } from '../db';
+import { userRepository } from '../repositories/userRepository';
+import type { UserPublic } from '../types';
 
 const SALT_ROUNDS = 10;
 
@@ -13,23 +13,19 @@ export class AuthService {
     email: string,
     password: string,
   ): Promise<UserPublic> {
-    const [existing] = await pool.query<RowDataPacket[]>(
-      'SELECT id FROM users WHERE email = ?',
-      [email],
-    );
-
-    if (Array.isArray(existing) && existing.length > 0) {
+    const exists = await userRepository.checkUserExist(email);
+    if (exists) {
       throw new Error('USER_EXISTS');
     }
 
     const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
-
-    const [result] = await pool.query<ResultSetHeader>(
-      'INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)',
-      [name, email, passwordHash],
+    const insertId = await userRepository.addUser(
+      pool,
+      name,
+      email,
+      passwordHash,
     );
 
-    const insertId = (result as ResultSetHeader).insertId;
     return {
       id: insertId,
       name,
@@ -42,12 +38,7 @@ export class AuthService {
     email: string,
     password: string,
   ): Promise<{ user: UserPublic; token: string }> {
-    const [rows] = await pool.query<RowDataPacket[]>(
-      'SELECT id, name, email, password_hash, created_at FROM users WHERE email = ?',
-      [email],
-    );
-
-    const user = Array.isArray(rows) ? (rows[0] as User) : null;
+    const user = await userRepository.getUser(email);
     if (!user || !(await bcrypt.compare(password, user.password_hash))) {
       throw new Error('INVALID_CREDENTIALS');
     }
@@ -59,6 +50,22 @@ export class AuthService {
 
     const { password_hash: _, ...userPublic } = user;
     return { user: userPublic, token };
+  }
+
+  async updateName(userId: number, name: string): Promise<UserPublic> {
+    const user = await userRepository.getPublicById(userId);
+    if (!user) {
+      throw new Error('USER_NOT_FOUND');
+    }
+
+    await userRepository.updateName(userId, name);
+
+    return {
+      id: user.id,
+      name,
+      email: user.email,
+      created_at: user.created_at,
+    };
   }
 }
 

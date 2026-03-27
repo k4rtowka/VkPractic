@@ -11,11 +11,14 @@ export const authController = {
     }
 
     try {
-      const user = await authService.register(name, email, password);
-      res.status(201).json({ message: 'Регистрация успешна', user });
+      await authService.register(name, email, password);
+      const { user, token } = await authService.login(email, password);
+      res.status(201).json({ message: 'Регистрация успешна', user, token });
     } catch (err) {
       if (err instanceof Error && err.message === 'USER_EXISTS') {
-        res.status(409).json({ error: 'Пользователь с таким email уже существует' });
+        res
+          .status(409)
+          .json({ error: 'Пользователь с таким email уже существует' });
         return;
       }
       throw err;
@@ -36,6 +39,27 @@ export const authController = {
     } catch (err) {
       if (err instanceof Error && err.message === 'INVALID_CREDENTIALS') {
         res.status(401).json({ error: 'Неверный email или пароль' });
+        return;
+      }
+      throw err;
+    }
+  },
+
+  async updateName(req: Request, res: Response): Promise<void> {
+    const { name } = req.body;
+    const userId = req.userId!;
+
+    if (!name || typeof name !== 'string' || !name.trim()) {
+      res.status(400).json({ error: 'Имя не может быть пустым' });
+      return;
+    }
+
+    try {
+      const user = await authService.updateName(userId, name.trim());
+      res.json({ user });
+    } catch (err) {
+      if (err instanceof Error && err.message === 'USER_NOT_FOUND') {
+        res.status(404).json({ error: 'Пользователь не найден' });
         return;
       }
       throw err;

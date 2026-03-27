@@ -1,0 +1,30 @@
+.root {
+  min-height: calc(100vh - 65px);
+  background-color: var(--black-primary-900);
+  padding: 32px 48px 48px;
+}
+
+.wrapper {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.title {
+  margin: 0 0 8px;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--brand-primary-700);
+}
+
+.subtitle {
+  margin: 0 0 20px;
+  font-size: 16px;
+  color: var(--black-primary-300);
+}
+
+.hint {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--black-primary-500);
+}

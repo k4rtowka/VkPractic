@@ -5,9 +5,12 @@ import { Svg } from '../../components/Svg/Svg';
 import { useNavigate } from 'react-router-dom';
 import { HomePageItem } from './HomePageItem/HomePageItem';
 import { HOME_PAGE_ITEMS_LIST } from './const';
+import { useAppSelector } from '../../hooks/redux';
+import { isAuthSelector } from '../../store/selectors/AuthSelectors';
 
 export const HomePage = () => {
   const navigate = useNavigate();
+  const isAuth = useAppSelector(isAuthSelector);
 
   return (
     <div className={s.root}>
@@ -21,12 +24,26 @@ export const HomePage = () => {
           соревновательным процессом
         </div>
         <div className={s.buttons}>
-          <Button
-            text="Начать сейчас"
-            variant="primary"
-            onClick={() => navigate('/auth')}
-          />
-          <Button text="Присоединиться к игре" variant="secondary" />
+          {isAuth ? (
+            <Button
+              text="Создать викторину"
+              variant="primary"
+              onClick={() => navigate('/quiz-create')}
+            />
+          ) : (
+            <Button
+              text="Начать сейчас"
+              variant="primary"
+              onClick={() => navigate('/auth')}
+            />
+          )}
+          {isAuth && (
+            <Button
+              text="Присоединиться к игре"
+              variant="secondary"
+              onClick={() => navigate('/quiz/join')}
+            />
+          )}
         </div>
       </div>
       <div className={s.secondSection}>

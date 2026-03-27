@@ -5,6 +5,15 @@
   font-weight: 600;
   cursor: pointer;
   border: 1px solid var(--brand-primary-500);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
 }
 
 .primary {
@@ -26,4 +35,9 @@
   &:hover {
     background-color: var(--black-primary-800);
   }
+}
+
+.root:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

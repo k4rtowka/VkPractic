@@ -1,66 +1,17 @@
 import { useState } from 'react';
-import {
-  AuthForm,
-  type AuthFormField,
-} from '../../components/AuthForm/AuthForm';
+import { useNavigate } from 'react-router-dom';
+import { AuthForm } from '../../components/AuthForm/AuthForm';
 import s from './AuthPage.module.scss';
-
-const registrationFields: AuthFormField[] = [
-  {
-    name: 'name',
-    label: 'Имя',
-    type: 'text',
-    placeholder: 'Ваше имя',
-    icon: 'user',
-    id: 'name',
-  },
-  {
-    name: 'email',
-    label: 'Email',
-    type: 'email',
-    placeholder: 'ваш@email.com',
-    icon: 'email',
-    id: 'email',
-  },
-  {
-    name: 'password',
-    label: 'Пароль',
-    type: 'password',
-    placeholder: '********',
-    icon: 'lock',
-    id: 'password',
-  },
-  {
-    name: 'confirmPassword',
-    label: 'Подтвердите пароль',
-    type: 'password',
-    placeholder: '********',
-    icon: 'lock',
-    id: 'confirmPassword',
-  },
-];
-
-const loginFields: AuthFormField[] = [
-  {
-    name: 'email',
-    label: 'Email',
-    type: 'email',
-    placeholder: 'ваш@email.com',
-    icon: 'email',
-    id: 'email',
-  },
-  {
-    name: 'password',
-    label: 'Пароль',
-    type: 'password',
-    placeholder: '........',
-    icon: 'lock',
-    id: 'password',
-  },
-];
+import { useAppDispatch } from '../../hooks/redux';
+import { loginUser, registerUser } from '../../store/actions/authActions';
+import { loginFields, registrationFields } from './const';
+import { validateField } from '../../utils/validation';
 
 export const AuthPage = () => {
   const [mode, setMode] = useState<'register' | 'login'>('register');
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const isRegister = mode === 'register';
   const fields = isRegister ? registrationFields : loginFields;
@@ -68,9 +19,41 @@ export const AuthPage = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
-    console.log(isRegister ? 'Register' : 'Login', data);
-    // TODO: вызов API
+    const data = Object.fromEntries(formData.entries()) as Record<string, string>;
+
+    const newErrors: Record<string, string> = {};
+    for (const field of fields) {
+      const value = data[field.name] ?? '';
+      const error = validateField(value, field.validationType);
+      if (error) {
+        newErrors[field.name] = error;
+      }
+    }
+    if (isRegister && data.password !== data.confirmPassword) {
+      newErrors.confirmPassword = 'Пароли не совпадают';
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
+
+    const promise = isRegister
+      ? dispatch(
+          registerUser({
+            name: data.name,
+            email: data.email,
+            password: data.password,
+          }),
+        )
+      : dispatch(loginUser({ email: data.email, password: data.password }));
+
+    promise
+      .unwrap()
+      .then(() => navigate('/home'))
+      .catch(() => {});
   };
 
   return (
@@ -83,17 +66,24 @@ export const AuthPage = () => {
         fields={fields}
         submitButtonText={isRegister ? 'Зарегистрироваться' : 'Войти'}
         onSubmit={handleSubmit}
+        errors={errors}
         footer={
           isRegister
             ? {
                 text: 'Уже есть аккаунт?',
                 linkText: 'Войти',
-                onClick: () => setMode('login'),
+                onClick: () => {
+                  setMode('login');
+                  setErrors({});
+                },
               }
             : {
                 text: 'Нет аккаунта?',
                 linkText: 'Регистрация',
-                onClick: () => setMode('register'),
+                onClick: () => {
+                  setMode('register');
+                  setErrors({});
+                },
               }
         }
       />

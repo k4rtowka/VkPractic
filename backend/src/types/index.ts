@@ -7,3 +7,11 @@ export type User = {
 };
 
 export type UserPublic = Omit<User, 'password_hash'>;
+
+export type { LobbyParticipant } from './lobby';
+export type {
+  CreateQuizWithSessionResult,
+  GameQuestion,
+  GameQuestionOption,
+  LeaderboardEntry,
+} from './quiz';

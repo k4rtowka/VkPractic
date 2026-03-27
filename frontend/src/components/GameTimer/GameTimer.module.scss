@@ -1,0 +1,16 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--brand-primary-500);
+  color: var(--white-primary);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.urgent {
+  background: var(--red-primary-500);
+}
